@@ -1,6 +1,32 @@
 spring:
   application:
     name: digital-scaffolder-gateway
+  gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: '*'
+            allowedMethods: '*'
+      default-filters: 
+        - name: Hystrix
+          args:
+            name: fallbackcmd
+            fallbackUri: forward:/fallbackcontroller
+      routes:
+        - id: test_route
+          uri: lb://digital-scaffolder-business-a
+          order: 0
+          predicates:
+            - Path=/a/**
+          filters:
+            - StripPrefix=1
+        - id: tmall_route
+          uri: https://www.tmall.com/
+          order: 1
+          predicates:
+            - Path=/tmall/**
+          filters: 
+            - StripPrefix=1
     
 server:
   port: 9099
@@ -9,3 +35,18 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+      
+hystrix:
+  threadpool: 
+    default: 
+      coreSize: 1000
+      maxQueueSize: -1
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 1000
+            
+
