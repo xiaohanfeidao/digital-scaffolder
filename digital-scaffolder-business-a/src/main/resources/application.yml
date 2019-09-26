@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: digital-scaffolder-business-a
+server: 
+  port: 8081
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+
+ribbon:
+  eager-load:
+    enabled: true
+    clients: digital-scaffolder-business-b
+
+feign:
+  hystrix:
+    enabled: true
+
+#hystrix setting
+hystrix:
+  command:
+    default:
+      coreSize: 64
+      maxQueueSize: -1
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 300
+            interruptOnTimeout: true
