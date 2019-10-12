@@ -23,6 +23,7 @@ public class BroadcastFilter implements GlobalFilter, Ordered {
 	public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 		URI url = exchange.getAttribute(GATEWAY_REQUEST_URL_ATTR);
 		String schemePrefix = exchange.getAttribute(GATEWAY_SCHEME_PREFIX_ATTR);
+		// broadcast://business-a
 		if (url == null
 				|| (!"broadcast".equals(url.getScheme()) && !"broadcast".equals(schemePrefix))) {
 			return chain.filter(exchange);

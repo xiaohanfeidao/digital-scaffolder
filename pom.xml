@@ -26,6 +26,12 @@
   	<module>digital-scaffolder-eureka</module>
   	<module>digital-scaffolder-business-a</module>
 	<module>digital-scaffolder-business-b</module>
+	<module>digital-scaffolder-business-c</module>
+	<module>digital-scaffolder-business-d</module>
+	<module>digital-scaffolder-business-e</module>
 	<module>digital-scaffolder-gateway</module>
+
+	<module>digital-scaffolder-business-api</module>
+	<module>digital-scaffolder-component</module>
   </modules>
 </project>
